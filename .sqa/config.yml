@@ -1,0 +1,76 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/onedataSim:
+      branch: dev
+      repo: https://github.com/EOSC-synergy/onedataSim
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.8
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EOSC-synergy/onedataSim git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-olivine-mongoose.sh
+        container: qc.acc_hazy-plum-iguana
+  QC.Doc:
+    repos:
+      github.com/EOSC-synergy/onedataSim find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-cerulean-heron.sh
+        container: qc.doc_hasty-xanthic-pig
+      github.com/EOSC-synergy/onedataSim git:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-pumpkin-olm.sh
+        container: qc.doc_whiny-wheat-budgerigar
+      github.com/EOSC-synergy/onedataSim markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.freaky-brown-hornet.sh
+        container: qc.doc_grumpy-thistle-boar
+  QC.Lic:
+    repos:
+      github.com/EOSC-synergy/onedataSim licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.fuzzy-coral-axolotl.sh
+        container: qc.lic_squirrely-salmon-bear
+  QC.Met:
+    repos:
+      github.com/EOSC-synergy/onedataSim cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.dorky-plum-shrew.sh
+        container: qc.met_gimpy-crimson-clam
+  QC.Sec:
+    repos:
+      github.com/EOSC-synergy/onedataSim bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-vermilion-anteater.sh
+        container: qc.sec_trippy-cornflower-coral
+  QC.Sty:
+    repos:
+      github.com/EOSC-synergy/onedataSim flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-fuchsia-rabbit.sh
+        container: qc.sty_nippy-thistle-cat
+      github.com/EOSC-synergy/onedataSim hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.zippy-persimmon-buffalo.sh
+        container: qc.sty_woozy-blue-greyhound
+      github.com/EOSC-synergy/onedataSim jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.greasy-scarlet-crab.sh
+        container: qc.sty_nippy-dandelion-coati
+      github.com/EOSC-synergy/onedataSim rubocop:
+        commands:
+        - /usr/bin/env sh .sqa/script.greasy-puce-elephant.sh
+        container: qc.sty_chewy-gold-dodo
+  QC.Ver:
+    repos:
+      github.com/EOSC-synergy/onedataSim get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.muggy-yellow-weasel.sh
+        container: qc.ver_messy-seashell-balinese
+timeout: 5400
